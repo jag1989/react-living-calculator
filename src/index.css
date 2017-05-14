@@ -1,0 +1,30 @@
+body, 
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.living-calc {
+    width: 50vw;
+    margin: 0 auto;
+}
+
+.living-calc_data {
+
+}
+
+.living-calc_data__row {
+    display: flex;
+}
+
+.living-calc_data__row > div {
+    padding: 5px 10px;
+}
+
+.living-calc_data__row > div:nth-child(1) {
+    flex-grow: 1;
+}
+
+.living-calc_data__row > div:nth-child(2) {
+    text-align: right;
+}
