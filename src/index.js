@@ -132,9 +132,9 @@ class Calculator extends React.Component {
 
     calcMortgagePayments( AmountToBorrow, NumberOfPayments ) {
         const a = AmountToBorrow; 
-        const n = NumberOfPayments;         
-        const r = ( this.state.MortgageRate / 100 ) / 12;
-        
+        const n = NumberOfPayments;    
+
+        let r = ( this.state.MortgageRate / 100 ) / 12;
         let p = (a * r *Math.pow((1+r),n))/(Math.pow((1+r),n)-1); 
         let prin = Math.round( p * 100 ) / 100; 
 
@@ -147,19 +147,17 @@ class Calculator extends React.Component {
         const IncomeMultiplesSingle = 4; 
         const IncomeMultiplesJoint = 3.5; 
 
-        let PercentageShare = this.state.PercentageShare / 100;
-
         // Calculations
+        let PercentageShare = this.state.PercentageShare / 100;        
         let NumberOfPayments    = this.state.MortgageTerm * 12;
         let ShareValue          = this.state.MarketValue * PercentageShare;
         let AmountToBorrow      = ShareValue - this.state.Deposit;
         let EquityToRent        = this.state.MarketValue - ShareValue; 
         let RentAmount          = ( EquityToRent * ( RateOnRent / 100 ) ) / 12; 
         let PaymentsMortgage    = this.calcMortgagePayments( AmountToBorrow, NumberOfPayments ); 
-       
-        let ResultSingle    = ( AmountToBorrow / IncomeMultiplesSingle ) + ( 12 * RentAmount );
-        let ResultJoint     = ( AmountToBorrow / IncomeMultiplesJoint ) + ( 12 * RentAmount );
-        let PaymentsTotal   = RentAmount + PaymentsMortgage;
+        let ResultSingle        = ( AmountToBorrow / IncomeMultiplesSingle ) + ( 12 * RentAmount );
+        let ResultJoint         = ( AmountToBorrow / IncomeMultiplesJoint ) + ( 12 * RentAmount );
+        let PaymentsTotal       = RentAmount + PaymentsMortgage;
 
         return (
             <div className="living-calc">
