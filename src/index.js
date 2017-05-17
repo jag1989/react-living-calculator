@@ -90,8 +90,8 @@ class CalcData extends React.Component {
                 <CalcDataRow name="Joint" value={this.props.ResultJoint} />
 
                 <h3>Example mortgage structure</h3>
-                <CalcDataRow name="Mortgage Years" value={this.props.MortgageTerm} />
-                <CalcDataRow name="Mortgage Rate" value={this.props.MortgageRate} />
+                <CalcDataRow name="Mortgage Years" value={this.props.MortgageTerm + " Years"} />
+                <CalcDataRow name="Mortgage Rate" value={this.props.MortgageRate + "%"} />
                 <CalcDataRow name="Mortgage (loan) Amount" value={this.props.MortgageAmount} />
 
                 <h3>Monthly payments</h3>
@@ -113,30 +113,54 @@ class Calculator extends React.Component {
         this.state = {
             ResultSingle: 0, 
             ResultJoint: 0, 
-            MortgageTerm: 24, 
-            MortgageRate: 4.75, 
+            MortgageTerm: 25, 
+            MortgageRate: 5, 
             MortgageAmount: 0, 
             PaymentsMortgage: 0, 
             PaymentsRent: 0, 
             PaymentsTotal: 0,
             MarketValue: 100000,            
-            PercentageShare: 25,
-            Deposit: 10000 
+            PercentageShare: 40,
+            Deposit: 10000
         }
-    }
 
-    workCalc() {
-        console.log('WorkCalc');
     }
 
     changeValue( Key, Val ) {
         this.setState({ [Key]: Val });
-
-        // this.workCalc();
     }
 
+    calcMortgagePayments( AmountToBorrow, NumberOfPayments ) {
+        const a = AmountToBorrow; 
+        const n = NumberOfPayments;         
+        const r = ( this.state.MortgageRate / 100 ) / 12;
+        
+        let p = (a * r *Math.pow((1+r),n))/(Math.pow((1+r),n)-1); 
+        let prin = Math.round( p * 100 ) / 100; 
+
+        return prin;
+    }
 
     render() {
+        // Immutable definitions
+        const RateOnRent = 2.75; 
+        const IncomeMultiplesSingle = 4; 
+        const IncomeMultiplesJoint = 3.5; 
+
+        let PercentageShare = this.state.PercentageShare / 100;
+
+        // Calculations
+        let NumberOfPayments    = this.state.MortgageTerm * 12;
+        let ShareValue          = this.state.MarketValue * PercentageShare;
+        let AmountToBorrow      = ShareValue - this.state.Deposit;
+        let EquityToRent        = this.state.MarketValue - ShareValue; 
+        let RentAmount          = ( EquityToRent * ( RateOnRent / 100 ) ) / 12; 
+        let PaymentsMortgage    = this.calcMortgagePayments( AmountToBorrow, NumberOfPayments ); 
+       
+        let ResultSingle    = ( AmountToBorrow / IncomeMultiplesSingle ) + ( 12 * RentAmount );
+        let ResultJoint     = ( AmountToBorrow / IncomeMultiplesJoint ) + ( 12 * RentAmount );
+        let PaymentsTotal   = RentAmount + PaymentsMortgage;
+
         return (
             <div className="living-calc">
                 <CalcSliders 
@@ -148,15 +172,14 @@ class Calculator extends React.Component {
                     MortgageRate={this.state.MortgageRate}
                     />
                 <CalcData
-                    MarketValue={this.state.MarketValue}
-                    ResultSingle={this.state.ResultSingle}
-                    ResultJoint={this.state.ResultJoint}
+                    ResultSingle={ResultSingle}
+                    ResultJoint={ResultJoint}
                     MortgageTerm={this.state.MortgageTerm}
                     MortgageRate={this.state.MortgageRate}
-                    MortgageAmount={this.state.MortgageAmount}
-                    PaymentsMortgage={this.state.PaymentsMortgage}
-                    PaymentsRent={this.state.PaymentsRent}
-                    PaymentsTotal={this.state.PaymentsTotal}
+                    MortgageAmount={AmountToBorrow}
+                    PaymentsMortgage={PaymentsMortgage}
+                    PaymentsRent={RentAmount}
+                    PaymentsTotal={PaymentsTotal}
                  />
             </div>
         );
