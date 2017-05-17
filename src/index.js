@@ -163,6 +163,9 @@ class Calculator extends React.Component {
 
         return (
             <div className="living-calc">
+                <div className="living-calc_header">
+                    <h2>Living Calculator</h2>
+                </div>
                 <CalcSliders 
                     changeValue={this.changeValue.bind(this)}
                     MarketValue={this.state.MarketValue}
@@ -181,6 +184,9 @@ class Calculator extends React.Component {
                     PaymentsRent={RentAmount}
                     PaymentsTotal={PaymentsTotal}
                  />
+                 <div className="living-calc_blurb">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, neque, inventore cupiditate sit deleniti minus eum. Cupiditate optio amet, quo ea eum, natus, adipisci incidunt, corrupti asperiores repellendus voluptas minus.
+                </div>
             </div>
         );
     }
