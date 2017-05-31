@@ -7,40 +7,34 @@ html {
 .living-calc {
     width: 75vw;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-areas: 
-            "header"
-            "body-inputs"
-            "calculations"
-            "footer";
-}
-
-@media (min-width: 700px) {
-    .living-calc {
-        grid-template-columns: 65% 35%;        
-        grid-template-areas: 
-            "header header"
-            "body-inputs calculations"
-            "footer footer";
-    }
+    display: flex;
+    flex-direction: column;
 }
 
 .living-calc_header {
-    grid-area: header;
     text-align: center;
 }
 
-.living-calc_sliders {
-    grid-area: body-inputs;
+.living-calc_body {
+    display: flex;
+    flex-direction: column;
 }
 
-.living-calc_data {
-    grid-area: calculations;
+@media (min-width: 700px) {
+    .living-calc_body {
+        flex-direction: row;
+    }
+
+    .living-calc_sliders {
+        width: 65%;
+    }
+
+    .living-calc_data {
+        width: 35%;
+    }
 }
 
 .living-calc_blurb {
-    grid-area: footer;
 }
 
 .living-calc_data__row {

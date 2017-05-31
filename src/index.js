@@ -164,24 +164,26 @@ class Calculator extends React.Component {
                 <div className="living-calc_header">
                     <h2>Living Calculator</h2>
                 </div>
-                <CalcSliders 
-                    changeValue={this.changeValue.bind(this)}
-                    MarketValue={this.state.MarketValue}
-                    PercentageShare={this.state.PercentageShare}
-                    Deposit={this.state.Deposit}
-                    MortgageTerm={this.state.MortgageTerm}
-                    MortgageRate={this.state.MortgageRate}
+                <div className="living-calc_body">
+                    <CalcSliders 
+                        changeValue={this.changeValue.bind(this)}
+                        MarketValue={this.state.MarketValue}
+                        PercentageShare={this.state.PercentageShare}
+                        Deposit={this.state.Deposit}
+                        MortgageTerm={this.state.MortgageTerm}
+                        MortgageRate={this.state.MortgageRate}
+                        />
+                    <CalcData
+                        ResultSingle={ResultSingle}
+                        ResultJoint={ResultJoint}
+                        MortgageTerm={this.state.MortgageTerm}
+                        MortgageRate={this.state.MortgageRate}
+                        MortgageAmount={AmountToBorrow}
+                        PaymentsMortgage={PaymentsMortgage}
+                        PaymentsRent={RentAmount}
+                        PaymentsTotal={PaymentsTotal}
                     />
-                <CalcData
-                    ResultSingle={ResultSingle}
-                    ResultJoint={ResultJoint}
-                    MortgageTerm={this.state.MortgageTerm}
-                    MortgageRate={this.state.MortgageRate}
-                    MortgageAmount={AmountToBorrow}
-                    PaymentsMortgage={PaymentsMortgage}
-                    PaymentsRent={RentAmount}
-                    PaymentsTotal={PaymentsTotal}
-                 />
+                 </div>
                  <div className="living-calc_blurb">
                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, neque, inventore cupiditate sit deleniti minus eum. Cupiditate optio amet, quo ea eum, natus, adipisci incidunt, corrupti asperiores repellendus voluptas minus.
                 </div>
