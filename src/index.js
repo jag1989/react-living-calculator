@@ -18,7 +18,12 @@ class CalcSlider extends React.Component {
 
     render() {
         return (
-            <input value={this.props.value} onChange={this.handleChange.bind(this)} />
+            <div className="form-control">
+                <label>
+                    {this.props.label}
+                    <input value={this.props.value} onChange={this.handleChange.bind(this)} />
+                </label>
+            </div>
         );
     }
 }
@@ -34,26 +39,31 @@ class CalcSliders extends React.Component {
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.MarketValue} 
+                    label="Market Value"
                     propKey="MarketValue"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.PercentageShare} 
+                    label="Percentage Share"
                     propKey="PercentageShare"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.Deposit} 
+                    label="Deposit"
                     propKey="Deposit"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.MortgageTerm} 
+                    label="MortgageTerm"
                     propKey="MortgageTerm"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.MortgageRate} 
+                    label="Mortgage Rate"
                     propKey="MortgageRate"
                 />
             </div>

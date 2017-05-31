@@ -52,3 +52,9 @@ html {
 .living-calc_data__row > div:nth-child(2) {
     text-align: right;
 }
+
+/* Form Inputs & Sliders */
+
+.form-control {
+    display: block;
+}
