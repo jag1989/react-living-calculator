@@ -177,9 +177,6 @@ class Calculator extends React.Component {
 
         return (
             <div className="living-calc">
-                <div className="living-calc_header">
-                    <h2>Living Calculator</h2>
-                </div>
                 <div className="living-calc_body">
                     <CalcSliders 
                         changeValue={this.changeValue.bind(this)}
