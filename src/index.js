@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import NumberFormat from 'react-number-format';
 import InputRange from 'react-input-range';
 import './index.css';
-const NumberFormat = require('react-number-format');
-
 import 'react-input-range/lib/css/index.css';
 
 // ========================================
