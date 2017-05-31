@@ -204,6 +204,11 @@ class Calculator extends React.Component {
         const RateOnRent = 2.75; 
         const IncomeMultiplesSingle = 4; 
         const IncomeMultiplesJoint = 3.5; 
+        const Locale = 'en-GB';
+        const LocaleCurrency = {
+            style: 'currency', 
+            currency: 'GBP' 
+        };
 
         // Calculations
         let PercentageShare = this.state.PercentageShare / 100;        
@@ -229,14 +234,14 @@ class Calculator extends React.Component {
                         MortgageRate={this.state.MortgageRate}
                         />
                     <CalcData
-                        ResultSingle={ResultSingle}
-                        ResultJoint={ResultJoint}
+                        ResultSingle={ResultSingle.toLocaleString(Locale, LocaleCurrency)}
+                        ResultJoint={ResultJoint.toLocaleString(Locale, LocaleCurrency)}
                         MortgageTerm={this.state.MortgageTerm}
                         MortgageRate={this.state.MortgageRate}
-                        MortgageAmount={AmountToBorrow}
-                        PaymentsMortgage={PaymentsMortgage}
-                        PaymentsRent={RentAmount}
-                        PaymentsTotal={PaymentsTotal}
+                        MortgageAmount={AmountToBorrow.toLocaleString(Locale, LocaleCurrency)}
+                        PaymentsMortgage={PaymentsMortgage.toLocaleString(Locale, LocaleCurrency)}
+                        PaymentsRent={RentAmount.toLocaleString(Locale, LocaleCurrency)}
+                        PaymentsTotal={PaymentsTotal.toLocaleString(Locale, LocaleCurrency)}
                     />
                  </div>
                  <div className="living-calc_blurb">
