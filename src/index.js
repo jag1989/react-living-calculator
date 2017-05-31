@@ -1,14 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import InputRange from 'react-input-range';
 import './index.css';
 const NumberFormat = require('react-number-format');
 
+import 'react-input-range/lib/css/index.css';
 
 // ========================================
 // A JSX Component for a Slider
 // ========================================
 
 class CalcSlider extends React.Component {
+    handleChange(Value) {
+        const Key   = this.props.propKey;
+
+        this.props.changeValue(Key, Value);
+    }
+
+    render() {
+        return (
+            <div className="form-control">
+                <label>
+                    {this.props.label}
+                    <InputRange
+                        minValue={this.props.minVal}
+                        maxValue={this.props.maxVal}
+                        value={this.props.value}
+                        onChange={this.handleChange.bind(this)} 
+                    />
+                </label>
+            </div>
+        );
+    }
+}
+
+// ========================================
+// A JSX Component for a Value Input
+// ========================================
+
+class CalcValueInput extends React.Component {
     handleChange(e) {
         const Key   = this.props.propKey;
         const Value = e.target.value;
@@ -42,13 +72,13 @@ class CalcSliders extends React.Component {
     render() {
         return (
             <div className="living-calc_sliders">
-                <CalcSlider  
+                <CalcValueInput  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.MarketValue} 
                     label="Price of the Property"
                     propKey="MarketValue"
                 />
-                <CalcSlider  
+                <CalcValueInput  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.Deposit} 
                     label="Your Deposit"
@@ -56,18 +86,24 @@ class CalcSliders extends React.Component {
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
+                    minVal={40}
+                    maxVal={75}
                     value={this.props.PercentageShare} 
                     label="Percentage Share"
                     propKey="PercentageShare"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
+                    minVal={20}
+                    maxVal={30}
                     value={this.props.MortgageTerm} 
                     label="Mortgage Period"
                     propKey="MortgageTerm"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
+                    minVal={0.5}
+                    maxVal={10}
                     value={this.props.MortgageRate} 
                     label="Interest Rate"
                     propKey="MortgageRate"
