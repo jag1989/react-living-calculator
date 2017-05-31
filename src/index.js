@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-const PropTypes = require('prop-types');
+const NumberFormat = require('react-number-format');
 
 
 // ========================================
@@ -21,7 +21,13 @@ class CalcSlider extends React.Component {
             <div className="form-control">
                 <label>
                     {this.props.label}
-                    <input value={this.props.value} onChange={this.handleChange.bind(this)} />
+                    <NumberFormat 
+                        allowNegative="false"
+                        thousandSeparator={true} 
+                        prefix={'£'} 
+                        value={this.props.value} 
+                        onChange={this.handleChange.bind(this)} 
+                    />
                 </label>
             </div>
         );
