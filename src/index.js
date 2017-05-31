@@ -45,8 +45,14 @@ class CalcSliders extends React.Component {
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.MarketValue} 
-                    label="Market Value"
+                    label="Price of the Property"
                     propKey="MarketValue"
+                />
+                <CalcSlider  
+                    changeValue={this.props.changeValue.bind(this)}
+                    value={this.props.Deposit} 
+                    label="Your Deposit"
+                    propKey="Deposit"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
@@ -56,20 +62,14 @@ class CalcSliders extends React.Component {
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
-                    value={this.props.Deposit} 
-                    label="Deposit"
-                    propKey="Deposit"
-                />
-                <CalcSlider  
-                    changeValue={this.props.changeValue.bind(this)}
                     value={this.props.MortgageTerm} 
-                    label="MortgageTerm"
+                    label="Mortgage Period"
                     propKey="MortgageTerm"
                 />
                 <CalcSlider  
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.MortgageRate} 
-                    label="Mortgage Rate"
+                    label="Interest Rate"
                     propKey="MortgageRate"
                 />
             </div>
