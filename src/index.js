@@ -17,6 +17,11 @@ class CalcSlider extends React.Component {
     }
 
     render() {
+        let Step = 1;
+        if( this.props.step ) {
+            Step = this.props.step;
+        }
+
         return (
             <div className="form-control">
                 <label>
@@ -24,6 +29,7 @@ class CalcSlider extends React.Component {
                     <InputRange
                         minValue={this.props.minVal}
                         maxValue={this.props.maxVal}
+                        step={Step}
                         value={this.props.value}
                         onChange={this.handleChange.bind(this)} 
                     />
@@ -103,6 +109,7 @@ class CalcSliders extends React.Component {
                     changeValue={this.props.changeValue.bind(this)}
                     minVal={0.5}
                     maxVal={10}
+                    step={0.5}
                     value={this.props.MortgageRate} 
                     label="Interest Rate"
                     propKey="MortgageRate"
