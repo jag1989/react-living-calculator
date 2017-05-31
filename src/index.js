@@ -52,7 +52,7 @@ class CalcValueInput extends React.Component {
                 <label>
                     {this.props.label}
                     <NumberFormat 
-                        allowNegative="false"
+                        allowNegative={false}
                         thousandSeparator={true} 
                         prefix={'£'} 
                         value={this.props.value} 
