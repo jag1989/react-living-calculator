@@ -1,17 +1,16 @@
+$--color-white: #FFF;
+$--color-primary: #CC0077;
+$--color-support: #E8EDF2;
+$--color-border: #C4C8CC;
+$--radius-border: 6px;
+$--breakpoint-md: 700px;
+
 body, 
 html {
     margin: 0;
     padding: 0;
     font-size: calc(1vw + 12px);
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-}
-
-:root {
-    --color-white: #FFF;
-    --color-primary: #CC0077;
-    --color-support: #E8EDF2;
-    --color-border: #C4C8CC;
-    --radius-border: 6px;
 }
 
 /* Layout */
@@ -21,31 +20,44 @@ html {
     margin: 5% auto;
     display: flex;
     flex-direction: column;
-    border-radius: var(--radius-border);
-    border: 1px solid var(--color-border);
+    border-radius: $--radius-border;
+    border: 1px solid $--color-border;
     box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);
 }
 
 .living-calc_body {
     display: flex;
     flex-direction: column;
+
+    @media (min-width: $--breakpoint-md) {
+        flex-direction: row;
+    }
 }
 
 .living-calc_sliders {
     padding: 20px;
+
+     @media (min-width: $--breakpoint-md) {
+        width: 65%;
+    }
 }
 
 .living-calc_data {
     padding: 20px;
-    background-color: var(--color-primary);
-    color: var(--color-white);   
+    background-color: $--color-primary;
+    color: $--color-white;   
+
+    @media (min-width: $--breakpoint-md) {
+        width: 35%;
+        border-top-right-radius: $--radius-border;    
+    }   
 }
 
 .living-calc_blurb {
     padding: 20px;
-    background-color: var(--color-support);
-    border-bottom-left-radius: var(--radius-border);
-    border-bottom-right-radius: var(--radius-border);
+    background-color: $--color-support;
+    border-bottom-left-radius: $--radius-border;
+    border-bottom-right-radius: $--radius-border;
 }
 
 .living-calc_data__row {
@@ -62,21 +74,6 @@ html {
 
 .living-calc_data__row > div:nth-child(2) {
     text-align: right;
-}
-
-@media (min-width: 700px) {
-    .living-calc_body {
-        flex-direction: row;
-    }
-
-    .living-calc_sliders {
-        width: 65%;
-    }
-
-    .living-calc_data {
-        width: 35%;
-        border-top-right-radius: var(--radius-border);         
-    }
 }
 
 /* Form Inputs & Sliders */
