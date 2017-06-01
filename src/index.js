@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import InputRange from 'react-input-range';
-import 'react-input-range/lib/css/index.css';
 import './built/index.css';
+import './built/input-range/input-range.css';
 
 // ========================================
 // A JSX Component for a Slider
