@@ -27,7 +27,7 @@ class CalcSlider extends React.Component {
                 <label>
                     {this.props.label}
 					<p>{this.props.description}</p>
-					<div className="formSlider">
+					<div className="form-slider">
 						<InputRange
 							minValue={this.props.minVal}
 							maxValue={this.props.maxVal}

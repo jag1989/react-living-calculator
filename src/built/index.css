@@ -3,6 +3,7 @@ html {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  min-width: 320px;
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   color: #313233; }
 
@@ -103,6 +104,6 @@ html {
     color: #313233;
     margin: 5px 0 10px 0; }
 
-.formSlider {
+.form-slider {
   height: 60px;
   padding-top: 15px; }
