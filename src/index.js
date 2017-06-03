@@ -28,6 +28,7 @@ class CalcSlider extends React.Component {
 					<p>{this.props.description}</p>
 					<div className="form-slider">
 						<InputRange
+                            formatLabel={value => `${value} ${this.props.unitLabel}`}
 							minValue={this.props.minVal}
 							maxValue={this.props.maxVal}
 							step={Step}
@@ -115,6 +116,7 @@ class CalcSliders extends React.Component {
                     minVal={40}
                     maxVal={75}
                     value={this.props.PercentageShare}
+                    unitLabel="%"
                     label="Percentage Share"
 					description="The percentage of the property you will own"
                     propKey="PercentageShare"
@@ -124,6 +126,7 @@ class CalcSliders extends React.Component {
                     minVal={20}
                     maxVal={30}
                     value={this.props.MortgageTerm}
+                    unitLabel="years"
                     label="Mortgage Period"
 					description="The amount of years you will pay the mortgage for"
                     propKey="MortgageTerm"
@@ -134,6 +137,7 @@ class CalcSliders extends React.Component {
                     maxVal={10}
                     step={0.5}
                     value={this.props.MortgageRate}
+                    unitLabel="%"
                     label="Interest Rate"
 					description="The interest rate on your mortgage repayments"
                     propKey="MortgageRate"
