@@ -8,26 +8,6 @@ import './built/input-range/input-range.css';
 // A JSX Component for a Slider
 // ========================================
 
-const Locale = 'en-GB';
-
-function ValidateNumberInput(Key, Val) {
-    const MaxDeposit = 80000;
-    const MaxMarketValue = 1000000;
-
-    let StrippedVal = Number(Val.replace(/[^0-9.]+/g, ""));
-
-    if( Key === 'Deposit' 
-        && StrippedVal > MaxDeposit ) {
-            StrippedVal = MaxDeposit;
-    } 
-    else if ( Key === 'MarketValue'
-        && StrippedVal > MaxMarketValue ) {
-            StrippedVal = MaxMarketValue;
-    }
-
-    return StrippedVal;
-}
-
 class CalcSlider extends React.Component {
     handleChange(Value) {
         const Key   = this.props.propKey;
@@ -68,13 +48,31 @@ class CalcSlider extends React.Component {
 class CalcValueInput extends React.Component {
     handleChange(e) {
         const Key   = this.props.propKey;
-        const Value   = ValidateNumberInput(Key, e.target.value);
+        const Value = this.ValidateNumberInput(Key, e.target.value);
 
         this.props.changeValue(Key, Value);
     }
 
+    ValidateNumberInput(Key, Val) {
+        const MaxDeposit = 80000;
+        const MaxMarketValue = 1000000;
+
+        let StrippedVal = Number(Val.replace(/[^0-9.]+/g, ""));
+
+        if( Key === 'Deposit' 
+            && StrippedVal > MaxDeposit ) {
+                StrippedVal = MaxDeposit;
+        } 
+        else if ( Key === 'MarketValue'
+            && StrippedVal > MaxMarketValue ) {
+                StrippedVal = MaxMarketValue;
+        }
+
+        return StrippedVal;
+    }
+
     render() {
-        const value = this.props.value.toLocaleString(Locale, {'minimumFractionDigits' : 0});
+        const value = this.props.value.toLocaleString('en-GB', {'minimumFractionDigits' : 0});
 
         return (
             <div className="form-control form-control--half">
@@ -235,6 +233,7 @@ class Calculator extends React.Component {
         const RateOnRent = 2.75;
         const IncomeMultiplesSingle = 4;
         const IncomeMultiplesJoint = 3.5;
+        const Locale = 'en-GB';
         const LocaleCurrency = {
             style: 'currency',
             currency: 'GBP'
