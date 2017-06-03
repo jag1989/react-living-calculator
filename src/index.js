@@ -207,13 +207,13 @@ class Calculator extends React.Component {
             ResultSingle: 0,
             ResultJoint: 0,
             MortgageTerm: 25,
-            MortgageRate: 5,
+            MortgageRate: 3,
             MortgageAmount: 0,
             PaymentsMortgage: 0,
             PaymentsRent: 0,
             PaymentsTotal: 0,
             MarketValue: 100000,
-            PercentageShare: 40,
+            PercentageShare: 60,
             Deposit: 10000
         }
 
