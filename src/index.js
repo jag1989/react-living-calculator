@@ -81,7 +81,13 @@ class CalcValueInput extends React.Component {
                     {this.props.label}
 					<p>{this.props.description}</p>
                     <div className="input-currency">
-                        <input className="input-currency" type="text" value={value} onChange={this.handleChange.bind(this)} pattern="\d*" />
+                        <input 
+                            className="input-currency" 
+                            type="text" 
+                            value={value} 
+                            onChange={this.handleChange.bind(this)} 
+                            pattern="\d*" 
+                        />
                     </div>
                 </label>
             </div>
@@ -174,22 +180,45 @@ class CalcData extends React.Component {
                 <h3 className="has-support">Your Results</h3>
 				<p className="living-calc_data__description">Minimum income required</p>
 				<div className="living-calc_data__container">
-					<CalcDataRow name="Single" value={this.props.ResultSingle } />
-					<CalcDataRow name="Joint" value={this.props.ResultJoint} />
+					<CalcDataRow 
+                        name="Single" 
+                        value={this.props.ResultSingle } 
+                    />
+					<CalcDataRow 
+                        name="Joint" 
+                        value={this.props.ResultJoint} 
+                    />
 				</div>
 
                 <h3>Example Mortgage Structure</h3>
 				<div className="living-calc_data__container">
-					<CalcDataRow name="Mortgage Years" value={this.props.MortgageTerm + " Years"} />
-					<CalcDataRow name="Mortgage Rate" value={this.props.MortgageRate + "%"} />
-					<CalcDataRow name="Mortgage (loan) Amount" value={this.props.MortgageAmount} />
+					<CalcDataRow 
+                        name="Mortgage Years" 
+                        value={this.props.MortgageTerm + " Years"} 
+                    />
+					<CalcDataRow 
+                        name="Mortgage Rate" 
+                        value={this.props.MortgageRate + "%"} 
+                    />
+					<CalcDataRow 
+                        name="Mortgage (loan) Amount" 
+                        value={this.props.MortgageAmount} 
+                    />
 				</div>
 
                 <h3>Monthly Payments</h3>
 				<div className="living-calc_data__container">
-					<CalcDataRow name="Mortgage payments/month" value={this.props.PaymentsMortgage} />
-					<CalcDataRow name="Rent payments/month" value={this.props.PaymentsRent} />
-					<CalcDataRow name="Total" value={this.props.PaymentsTotal} />
+					<CalcDataRow 
+                        name="Mortgage payments/month" 
+                        value={this.props.PaymentsMortgage} 
+                    />
+					<CalcDataRow 
+                        name="Rent payments/month" 
+                        value={this.props.PaymentsRent} 
+                    />
+					<CalcDataRow 
+                        name="Total" 
+                        value={this.props.PaymentsTotal} />
 				</div>
             </div>
          );
