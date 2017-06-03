@@ -77,11 +77,12 @@ class CalcValueInput extends React.Component {
 
         return (
             <div className="form-control form-control--half">
-                <label>
+                <label htmlFor={this.props.propKey}>
                     {this.props.label}
 					<p>{this.props.description}</p>
                     <div className="input-currency">
                         <input 
+                            id={this.props.propKey}
                             className="input-currency" 
                             type="text" 
                             value={value} 
