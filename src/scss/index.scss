@@ -131,6 +131,12 @@ html {
 	}
 }
 
+.form-control--slider {
+	& + & {
+		margin-top: 1.25rem;
+	}
+}
+
 .form-control input {
 	display: block;
 	width: 100%;

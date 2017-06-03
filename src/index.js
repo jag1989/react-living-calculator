@@ -22,13 +22,13 @@ class CalcSlider extends React.Component {
         }
 
         return (
-            <div className="form-control">
+            <div className="form-control form-control--slider">
                 <label>
                     {this.props.label}
 					<p>{this.props.description}</p>
 					<div className="form-slider">
 						<InputRange
-                            formatLabel={value => `${value} ${this.props.unitLabel}`}
+                            formatLabel={value => `${value}${this.props.unitLabel}`}
 							minValue={this.props.minVal}
 							maxValue={this.props.maxVal}
 							step={Step}
@@ -132,7 +132,7 @@ class CalcSliders extends React.Component {
                     minVal={20}
                     maxVal={30}
                     value={this.props.MortgageTerm}
-                    unitLabel="years"
+                    unitLabel=" years"
                     label="Mortgage Period"
 					description="The amount of years you will pay the mortgage for"
                     propKey="MortgageTerm"
