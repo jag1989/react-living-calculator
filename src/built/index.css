@@ -85,15 +85,15 @@ html {
   display: block; }
 
 .form-control--half {
-  margin-bottom: 1.875rem;
-  margin-right: 0.9375rem; }
-  .form-control--half + .form-control--half {
-    margin-left: 0.9375rem;
-    margin-right: 0; }
+  margin-bottom: 1.875rem; }
   @media (min-width: 700px) {
     .form-control--half {
       display: inline-block;
-      width: calc(50% - 0.9375rem); } }
+      width: calc(50% - 0.9375rem);
+      margin-right: 0.9375rem; }
+      .form-control--half + .form-control--half {
+        margin-left: 0.9375rem;
+        margin-right: 0; } }
 
 .form-control input {
   display: block;

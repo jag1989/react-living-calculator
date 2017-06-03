@@ -118,16 +118,16 @@ html {
 
 .form-control--half {
 	margin-bottom: 1.875rem;
-	margin-right: 0.9375rem;
-
-	& + & {
-		margin-left: 0.9375rem;
-		margin-right: 0;
-	}
 
 	@media (min-width: $--breakpoint-md) {
 		display: inline-block;
 		width: calc(50% - 0.9375rem);
+		margin-right: 0.9375rem;
+		
+		& + & {
+			margin-left: 0.9375rem;
+			margin-right: 0;
+		}
 	}
 }
 
