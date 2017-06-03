@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NumberFormat from 'react-number-format';
 import InputRange from 'react-input-range';
 import './built/index.css';
 import './built/input-range/input-range.css';
@@ -8,6 +7,26 @@ import './built/input-range/input-range.css';
 // ========================================
 // A JSX Component for a Slider
 // ========================================
+
+const Locale = 'en-GB';
+
+function ValidateNumberInput(Key, Val) {
+    const MaxDeposit = 80000;
+    const MaxMarketValue = 1000000;
+
+    let StrippedVal = Number(Val.replace(/[^0-9.]+/g, ""));
+
+    if( Key === 'Deposit' 
+        && StrippedVal > MaxDeposit ) {
+            StrippedVal = MaxDeposit;
+    } 
+    else if ( Key === 'MarketValue'
+        && StrippedVal > MaxMarketValue ) {
+            StrippedVal = MaxMarketValue;
+    }
+
+    return StrippedVal;
+}
 
 class CalcSlider extends React.Component {
     handleChange(Value) {
@@ -49,24 +68,20 @@ class CalcSlider extends React.Component {
 class CalcValueInput extends React.Component {
     handleChange(e) {
         const Key   = this.props.propKey;
-        const Value = e.target.value;
+        const Value   = ValidateNumberInput(Key, e.target.value);
 
         this.props.changeValue(Key, Value);
     }
 
     render() {
+        const value = this.props.value.toLocaleString(Locale, {'minimumFractionDigits' : 0});
+
         return (
             <div className="form-control form-control--half">
                 <label>
                     {this.props.label}
 					<p>{this.props.description}</p>
-                    <NumberFormat
-                        allowNegative={false}
-                        thousandSeparator={true}
-                        prefix={'£'}
-                        value={this.props.value}
-                        onChange={this.handleChange.bind(this)}
-                    />
+                    <input type="text" value={value} onChange={this.handleChange.bind(this)} pattern="\d*" />
                 </label>
             </div>
         );
@@ -220,14 +235,13 @@ class Calculator extends React.Component {
         const RateOnRent = 2.75;
         const IncomeMultiplesSingle = 4;
         const IncomeMultiplesJoint = 3.5;
-        const Locale = 'en-GB';
         const LocaleCurrency = {
             style: 'currency',
             currency: 'GBP'
         };
 
         // Calculations
-        let PercentageShare = this.state.PercentageShare / 100;
+        let PercentageShare     = this.state.PercentageShare / 100;
         let NumberOfPayments    = this.state.MortgageTerm * 12;
         let ShareValue          = this.state.MarketValue * PercentageShare;
         let AmountToBorrow      = ShareValue - this.state.Deposit;
