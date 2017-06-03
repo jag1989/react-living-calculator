@@ -4,6 +4,7 @@
   font-size: $input-range-label-font-size;
   transform: translateZ(0);
   white-space: nowrap;
+  font-weight: normal;
 }
 
 .input-range__label--min,
@@ -21,6 +22,7 @@
 }
 
 .input-range__label--value {
+  font-weight: 600;
   position: absolute;
   top: $input-range-label-value-position-top;
 }

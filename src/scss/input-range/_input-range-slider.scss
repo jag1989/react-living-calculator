@@ -12,6 +12,7 @@
   top: 50%;
   transition: $input-range-slider-transition;
   width: $input-range-slider-width;
+  border: 1px solid #E9EDF2;
 
   &:active {
     transform: $input-range-slider-active-transform;
@@ -31,4 +32,9 @@
 
 .input-range__slider-container {
   transition: $input-range-slider-container-transition;
+
+  .input-range__label-container {
+    left: -50%;
+    position: relative;
+  }
 }

@@ -6,7 +6,6 @@
   height: $input-range-track-height;
   position: relative;
   transition: $input-range-track-transition;
-  border: 1px solid #C4C8CC;
 
   .input-range--disabled & {
     background: $input-range-track-disabled-background;
@@ -19,6 +18,7 @@
   position: absolute;
   right: 0;
   top: 50%;
+  border: 1px solid #C4C8CC;  
 }
 
 .input-range__track--active {
