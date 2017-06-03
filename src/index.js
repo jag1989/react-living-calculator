@@ -107,7 +107,7 @@ class CalcSliders extends React.Component {
                     changeValue={this.props.changeValue.bind(this)}
                     value={this.props.Deposit}
                     label="Your Deposit"
-					description="Up to a maximum of 80,000"
+					description="Up to a maximum of £80,000"
                     propKey="Deposit"
                 />
                 <CalcSlider
