@@ -141,6 +141,24 @@ html {
 	font-size: 1.125rem;
 }
 
+.form-control .input-currency {
+	position: relative;
+
+	input {
+		padding-left: 2rem;
+	}
+
+	&:before {
+		content: "£";
+		position: absolute;
+		left: 1rem;
+		top: 0.875rem;
+		color: $--color-text;
+		z-index: 2;
+		font-size: 1.25rem;
+	}
+}
+
 .form-control label {
 	font-weight: 700;
 	font-size: 1.125rem;

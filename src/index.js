@@ -79,7 +79,9 @@ class CalcValueInput extends React.Component {
                 <label>
                     {this.props.label}
 					<p>{this.props.description}</p>
-                    <input type="text" value={value} onChange={this.handleChange.bind(this)} pattern="\d*" />
+                    <div className="input-currency">
+                        <input className="input-currency" type="text" value={value} onChange={this.handleChange.bind(this)} pattern="\d*" />
+                    </div>
                 </label>
             </div>
         );
