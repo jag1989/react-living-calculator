@@ -243,13 +243,15 @@ export default class Calculator extends React.Component {
             PaymentsTotal: 0,
             MarketValue: 100000,
             PercentageShare: 60,
-            Deposit: 10000
+            Deposit: 10000,
+            AmountToBorrow: 0,
+            RentAmount: 0
         }
 
     }
 
     changeValue( Key, Val ) {
-        this.setState({ [Key]: Val });
+        this.setState({ [Key]: Val }, this.calculateValues.bind(this));
     }
 
     calcMortgagePayments( AmountToBorrow, NumberOfPayments ) {
@@ -263,16 +265,11 @@ export default class Calculator extends React.Component {
         return prin;
     }
 
-    render() {
+    calculateValues() {
         // Immutable definitions
         const RateOnRent = 2.75;
         const IncomeMultiplesSingle = 4;
         const IncomeMultiplesJoint = 3.5;
-        const Locale = 'en-GB';
-        const LocaleCurrency = {
-            style: 'currency',
-            currency: 'GBP'
-        };
 
         // Calculations
         let PercentageShare     = this.state.PercentageShare / 100;
@@ -286,6 +283,27 @@ export default class Calculator extends React.Component {
         let ResultJoint         = ( AmountToBorrow / IncomeMultiplesJoint ) + ( 12 * RentAmount );
         let PaymentsTotal       = RentAmount + PaymentsMortgage;
 
+        // Update states for front-end
+        this.setState({ ResultSingle });
+        this.setState({ ResultJoint });
+        this.setState({ AmountToBorrow });
+        this.setState({ PaymentsMortgage });
+        this.setState({ RentAmount });
+        this.setState({ PaymentsTotal });
+    }
+
+    componentDidMount() {
+        this.calculateValues();
+    }
+
+    render() {
+        // Immutable definitions
+        const Locale = 'en-GB';
+        const LocaleCurrency = {
+            style: 'currency',
+            currency: 'GBP'
+        };
+
         return (
             <div className="living-calc">
                 <div className="living-calc_body">
@@ -298,14 +316,14 @@ export default class Calculator extends React.Component {
                         MortgageRate={this.state.MortgageRate}
                         />
                     <CalcData
-                        ResultSingle={ResultSingle.toLocaleString(Locale, LocaleCurrency)}
-                        ResultJoint={ResultJoint.toLocaleString(Locale, LocaleCurrency)}
+                        ResultSingle={this.state.ResultSingle.toLocaleString(Locale, LocaleCurrency)}
+                        ResultJoint={this.state.ResultJoint.toLocaleString(Locale, LocaleCurrency)}
                         MortgageTerm={this.state.MortgageTerm}
                         MortgageRate={this.state.MortgageRate}
-                        MortgageAmount={AmountToBorrow.toLocaleString(Locale, LocaleCurrency)}
-                        PaymentsMortgage={PaymentsMortgage.toLocaleString(Locale, LocaleCurrency)}
-                        PaymentsRent={RentAmount.toLocaleString(Locale, LocaleCurrency)}
-                        PaymentsTotal={PaymentsTotal.toLocaleString(Locale, LocaleCurrency)}
+                        MortgageAmount={this.state.AmountToBorrow.toLocaleString(Locale, LocaleCurrency)}
+                        PaymentsMortgage={this.state.PaymentsMortgage.toLocaleString(Locale, LocaleCurrency)}
+                        PaymentsRent={this.state.RentAmount.toLocaleString(Locale, LocaleCurrency)}
+                        PaymentsTotal={this.state.PaymentsTotal.toLocaleString(Locale, LocaleCurrency)}
                     />
                  </div>
                  <div className="living-calc_blurb">
@@ -315,5 +333,3 @@ export default class Calculator extends React.Component {
         );
     }
 }
-
-// ========================================
