@@ -169,6 +169,47 @@ class CalcDataRow extends React.Component {
 }
 
 // ========================================
+// A JSX Component for a Currency Row
+// ========================================
+
+class CalcCurrencyRow extends React.Component {
+
+    toLocaleStringSupportsLocales() {
+        let number = 0;
+        try {
+            number.toLocaleString('i');
+        } catch (e) {
+            return e.name === 'RangeError';
+        }
+        return false;
+    }
+
+    formatCurrency(prop) {
+         // Immutable definitions
+        const Locale = 'en-GB';
+        const LocaleCurrency = {
+            style: 'currency',
+            currency: 'GBP'
+        };
+
+        if( this.toLocaleStringSupportsLocales() === false ) {
+            return `£${prop.toFixed(2)}`;
+        }
+
+        return prop.toLocaleString(Locale, LocaleCurrency);
+    }
+
+    render() {
+        return (
+            <div className="living-calc_data__row">
+                <div>{this.props.name}</div>
+                <div>{this.formatCurrency(this.props.value)}</div>
+            </div>
+        );
+    }
+}
+
+// ========================================
 // A JSX Component for the Data Container
 // ========================================
 
@@ -180,11 +221,11 @@ class CalcData extends React.Component {
                 <h3 className="has-support">Your Results</h3>
 				<p className="living-calc_data__description">Minimum income required</p>
 				<div className="living-calc_data__container">
-					<CalcDataRow 
+					<CalcCurrencyRow 
                         name="Single" 
                         value={this.props.ResultSingle } 
                     />
-					<CalcDataRow 
+					<CalcCurrencyRow 
                         name="Joint" 
                         value={this.props.ResultJoint} 
                     />
@@ -200,7 +241,7 @@ class CalcData extends React.Component {
                         name="Mortgage Rate" 
                         value={this.props.MortgageRate + "%"} 
                     />
-					<CalcDataRow 
+					<CalcCurrencyRow 
                         name="Mortgage (loan) Amount" 
                         value={this.props.MortgageAmount} 
                     />
@@ -208,15 +249,15 @@ class CalcData extends React.Component {
 
                 <h3>Monthly Payments</h3>
 				<div className="living-calc_data__container">
-					<CalcDataRow 
+					<CalcCurrencyRow 
                         name="Mortgage payments/month" 
                         value={this.props.PaymentsMortgage} 
                     />
-					<CalcDataRow 
+					<CalcCurrencyRow 
                         name="Rent payments/month" 
                         value={this.props.PaymentsRent} 
                     />
-					<CalcDataRow 
+					<CalcCurrencyRow 
                         name="Total" 
                         value={this.props.PaymentsTotal} />
 				</div>
@@ -297,13 +338,6 @@ export default class Calculator extends React.Component {
     }
 
     render() {
-        // Immutable definitions
-        const Locale = 'en-GB';
-        const LocaleCurrency = {
-            style: 'currency',
-            currency: 'GBP'
-        };
-
         return (
             <div className="living-calc">
                 <div className="living-calc_body">
@@ -316,14 +350,14 @@ export default class Calculator extends React.Component {
                         MortgageRate={this.state.MortgageRate}
                         />
                     <CalcData
-                        ResultSingle={this.state.ResultSingle.toLocaleString(Locale, LocaleCurrency)}
-                        ResultJoint={this.state.ResultJoint.toLocaleString(Locale, LocaleCurrency)}
+                        ResultSingle={this.state.ResultSingle}
+                        ResultJoint={this.state.ResultJoint}
                         MortgageTerm={this.state.MortgageTerm}
                         MortgageRate={this.state.MortgageRate}
-                        MortgageAmount={this.state.AmountToBorrow.toLocaleString(Locale, LocaleCurrency)}
-                        PaymentsMortgage={this.state.PaymentsMortgage.toLocaleString(Locale, LocaleCurrency)}
-                        PaymentsRent={this.state.RentAmount.toLocaleString(Locale, LocaleCurrency)}
-                        PaymentsTotal={this.state.PaymentsTotal.toLocaleString(Locale, LocaleCurrency)}
+                        MortgageAmount={this.state.AmountToBorrow}
+                        PaymentsMortgage={this.state.PaymentsMortgage}
+                        PaymentsRent={this.state.RentAmount}
+                        PaymentsTotal={this.state.PaymentsTotal}
                     />
                  </div>
                  <div className="living-calc_blurb">
