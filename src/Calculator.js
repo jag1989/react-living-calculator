@@ -1,6 +1,6 @@
 import React from 'react';
 import InputRange from 'react-input-range';
-import './built/index.css';
+//import './built/index.css';
 import './built/input-range/input-range.css';
 
 // ========================================
